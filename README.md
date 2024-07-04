@@ -1,8 +1,6 @@
 # ⚠️⚠️ IMPORTANT ⚠️⚠️ 
 
-You should remove ```display:table``` in ```node_modules/@radix-ui/react-scroll-area/dist/index.js``` and ```node_modules/@radix-ui/react-scroll-area/dist/index.mjs```
-
-it's beyond my control, as I write these lines shadcn/ui has a bug with this component. The ContextMenuItem also has a bug on hover on background color. I have already opened an issue on their repo.
+The ContextMenuItem also has a bug on hover on background color. I have already opened an issue on their repo.
 
 
 # Reactify
