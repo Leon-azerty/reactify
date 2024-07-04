@@ -1,6 +1,8 @@
 'use client'
+
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+
 export default function Page() {
   const router = useRouter()
   const [access_token, setAccess_token] = useState('')
@@ -38,7 +40,7 @@ export default function Page() {
         localStorage.setItem('access_token', body.access_token)
         setAccess_token(body.access_token)
         document.cookie = `access_token=${body.access_token}; path=/; HttpOnly; SameSite=Lax`
-        router.push(`/?access_token=${body.access_token}`)
+        router.replace(`/?access_token=${body.access_token}`)
       }
     }
     if (code && !access_token) {
