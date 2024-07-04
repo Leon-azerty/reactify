@@ -1,8 +1,8 @@
 'use client'
 
+import { Song } from '@/app/type'
 import { ReactNode, useState } from 'react'
-import { CurrentSongContext } from './common/context/current-song'
-import { Song } from './type'
+import { CurrentSongContext } from './current-song'
 
 export function CurrentSongProvider({ children }: { children: ReactNode }) {
   const [currentSong, setCurrentSong] = useState<Song>({

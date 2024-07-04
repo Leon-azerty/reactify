@@ -1,4 +1,4 @@
-import { RecommendationsList } from '../../data'
+import { RecommendationsList } from '../../../data'
 import PlaylistHeader from './playlist-header'
 import PlaylistItem from './playlist-item'
 

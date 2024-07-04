@@ -1,9 +1,9 @@
 'use client'
 
+import { CurrentSongContext } from '@/app/common/context/current-song'
 import { Play } from 'lucide-react'
 import Image, { StaticImageData } from 'next/image'
 import { useContext } from 'react'
-import { CurrentSongContext } from '../common/context/current-song'
 
 export default function RecentsListening({
   title,

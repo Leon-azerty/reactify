@@ -2,7 +2,7 @@
 
 import { Badge } from '@/ui/badge'
 import { useState } from 'react'
-import { BadgeList } from '../const'
+import { BadgeList } from '../../const'
 
 export default function Filter() {
   const [filter, setFilter] = useState('All')

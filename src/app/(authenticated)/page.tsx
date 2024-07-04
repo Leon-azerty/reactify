@@ -1,8 +1,8 @@
 'use client'
 
 import { ScrollArea } from '@/ui/scroll-area'
-import Footer from './common/footer/footer'
-import Navbar from './common/navbar'
+import Footer from '../common/footer/footer'
+import Navbar from '../common/navbar'
 import Filter from './components/filter'
 import GoodMorning from './components/good-morning'
 import Recommendations from './components/recommendations/recommendations'

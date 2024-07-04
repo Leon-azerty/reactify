@@ -1,20 +1,27 @@
-import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 
 // ------------------------------------------------------
 
 // Middleware pour gérer l'authentification
 export async function middleware(request: NextRequest) {
-  if (cookies().get('access_token')) {
-    return NextResponse.json({
-      cookies: request.cookies.getAll(),
-      access_token: cookies().get('access_token'),
-    })
-    // L'utilisateur est déjà connecté
-    return NextResponse.next(request)
+  const access_token = request.nextUrl.searchParams.get('access_token')
+
+  if (!access_token) {
+    return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  return NextResponse.rewrite(new URL('/login', request.url))
+  try {
+    // Valider le token si nécessaire...
+
+    // Ajouter le token aux headers pour les futures requêtes API si nécessaire
+    request.headers.set('Authorization', `Bearer ${access_token}`)
+
+    // Continuer le traitement de la requête
+    return NextResponse.next()
+  } catch (error) {
+    // Traiter les erreurs, par exemple, un problème de validation du token
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
 }
 
 export const config = {

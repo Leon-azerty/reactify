@@ -1,5 +1,5 @@
+import { RecentsListeninglist } from '@/app/data'
 import { cn } from '@/lib/utils'
-import { RecentsListeninglist } from '../data'
 import RecentsListening from './recentsListening'
 
 export default function GoodMorning() {

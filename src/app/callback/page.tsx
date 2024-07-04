@@ -1,15 +1,14 @@
 'use client'
-
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-
 export default function Page() {
+  const router = useRouter()
   const [access_token, setAccess_token] = useState('')
   const searchParams = useSearchParams()
   const code = searchParams.get('code')
   // Construire l'URL d'autorisation Spotify
   const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || ''
-  const redirectUri = 'http://localhost:3000/callback'
+  const redirectUri = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || ''
 
   useEffect(() => {
     const getToken = async (code: string) => {
@@ -38,13 +37,14 @@ export default function Page() {
       if (body.access_token) {
         localStorage.setItem('access_token', body.access_token)
         setAccess_token(body.access_token)
+        document.cookie = `access_token=${body.access_token}; path=/; HttpOnly; SameSite=Lax`
+        router.push(`/?access_token=${body.access_token}`)
       }
     }
     if (code && !access_token) {
       getToken(code)
     }
   }, [code, access_token, clientId, redirectUri])
-
   return (
     <section>
       Loading

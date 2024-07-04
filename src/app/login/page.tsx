@@ -20,7 +20,7 @@ export default function Page() {
 
     // Construire l'URL d'autorisation Spotify
     const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || ''
-    const redirectUri = 'http://localhost:3000/callback'
+    const redirectUri = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || ''
     const scope = 'user-read-private user-read-email'
     const authUrl = new URL('https://accounts.spotify.com/authorize')
 
@@ -37,8 +37,8 @@ export default function Page() {
     router.push(authUrl.toString())
   }
   return (
-    <section>
+    <main className="flex h-screen w-screen items-center justify-center">
       <Button onClick={handleClick}>Se connecter avec Spotify</Button>
-    </section>
+    </main>
   )
 }
