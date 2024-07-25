@@ -8,13 +8,11 @@ export default function Page() {
   const [access_token, setAccess_token] = useState('')
   const searchParams = useSearchParams()
   const code = searchParams.get('code')
-  // Construire l'URL d'autorisation Spotify
   const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || ''
   const redirectUri = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || ''
 
   useEffect(() => {
     const getToken = async (code: string) => {
-      // stored in the previous step
       let codeVerifier = localStorage.getItem('code_verifier') || ''
 
       const payload = {
@@ -38,8 +36,8 @@ export default function Page() {
       const body = await response.json()
       if (body.access_token) {
         localStorage.setItem('access_token', body.access_token)
+        console.log('body.access_token', body.access_token)
         setAccess_token(body.access_token)
-        document.cookie = `access_token=${body.access_token}; path=/; HttpOnly; SameSite=Lax`
         router.replace(`/?access_token=${body.access_token}`)
       }
     }
